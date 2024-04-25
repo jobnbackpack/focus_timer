@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:focus_timer/ui/pages/timer_page.dart';
 import 'package:focus_timer/ui/themes/theme_provider.dart';
+import 'package:focus_timer/ui/widgets/stopwatch_provider.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-      create: (context) => ThemeProvider(),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider<ThemeProvider>(create: (BuildContext context) {
+          return ThemeProvider();
+        }),
+        ChangeNotifierProvider<StopwatchProvider>(
+          create: (BuildContext context) {
+            return StopwatchProvider();
+          },
+        ),
+      ],
       child: const MyApp(),
     ),
   );
