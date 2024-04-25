@@ -49,6 +49,19 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.background,
         title: Text(widget.title),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 8),
+            child: ElevatedButton(
+              onPressed: () {
+                context.read<ThemeProvider>().toggleTheme();
+              },
+              child: Icon(context.read<ThemeProvider>().isDarkMode
+                  ? Icons.light_mode
+                  : Icons.dark_mode),
+            ),
+          )
+        ],
       ),
       body: Center(
         child: Column(
@@ -61,11 +74,6 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: Theme.of(context).textTheme.headlineMedium,
             ),
-            ElevatedButton(
-                onPressed: () {
-                  context.read<ThemeProvider>().toggleTheme();
-                },
-                child: const Text("Change Dark/Light Mode"))
           ],
         ),
       ),
