@@ -7,20 +7,26 @@ class Stopwatch extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text("${context.watch<StopwatchProvider>().count}"),
-        GestureDetector(
-          child: const Icon(Icons.play_arrow),
-          onTap: () {
-            if (context.watch<StopwatchProvider>().isPlaying) {
-              context.read<StopwatchProvider>().stopStopwatch();
-            } else {
-              context.read<StopwatchProvider>().startStopwatch();
-            }
-          },
-        )
-      ],
+    return Consumer<StopwatchProvider>(
+      builder: (context, data, widget) {
+        return Column(
+          children: [
+            Text("${data.count}"),
+            GestureDetector(
+              child: data.isPlaying
+                  ? const Icon(Icons.pause)
+                  : const Icon(Icons.play_arrow),
+              onTap: () {
+                if (data.isPlaying) {
+                  data.stopStopwatch();
+                } else {
+                  data.startStopwatch();
+                }
+              },
+            )
+          ],
+        );
+      },
     );
   }
 }
