@@ -11,7 +11,11 @@ class Stopwatch extends StatelessWidget {
       builder: (context, data, widget) {
         return Column(
           children: [
-            Text("${data.count}"),
+            Text(
+              "${data.count}",
+              style: const TextStyle(fontSize: 35),
+            ),
+            const SizedBox(height: 20),
             GestureDetector(
               child: data.isPlaying
                   ? const Icon(Icons.pause)

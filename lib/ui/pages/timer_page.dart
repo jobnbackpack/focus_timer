@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:focus_timer/ui/pages/login_page.dart';
 import 'package:focus_timer/ui/themes/theme_provider.dart';
+import 'package:focus_timer/ui/widgets/results.dart';
 import 'package:focus_timer/ui/widgets/stopwatch.dart';
 import 'package:provider/provider.dart';
 
@@ -51,7 +52,17 @@ class TimerPage extends StatelessWidget {
               ),
             ],
           ),
-          body: const Center(child: Stopwatch()),
+          body: const Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Stopwatch(),
+                SizedBox(height: 50),
+                Results(),
+              ],
+            ),
+          ),
         ));
   }
 }
